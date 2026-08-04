@@ -1,4 +1,6 @@
+import { UsersListPage } from "@/features/users/pages/UserListPage";
+
 function App() {
-  return <h1>Users Filter</h1>;
+  return <UsersListPage />;
 }
 export default App;
