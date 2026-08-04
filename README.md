@@ -1,77 +1,28 @@
-# React + TypeScript + Vite
+# Users Filter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Listagem de usuários com filtros combinados (busca por nome/email, gender, faixa etária) e ordenação de colunas, construída com Vite, React, TypeScript, Chakra UI, Zod e React Hook Form.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Vite + React + TypeScript
+- Chakra UI (v3)
+- Zod + React Hook Form (validação do dropdown de filtros)
+- Fake API em memória com delay simulado de 2s
 
-## React Compiler
+## Arquitetura
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+Organização feature-based em `src/features/users`:
 
-Note: This will impact Vite dev & build performances.
+- `api/` — dados mockados e serviço com filtro + delay simulado
+- `types/` — contratos de domínio
+- `hooks/` — `useUsers`, `usePagination`, `useSort`
+- `components/` — tabela, paginação, busca e dropdown de filtros
+- `schemas/` — validação Zod dos filtros
+- `pages/` — página orquestradora
 
-## Expanding the ESLint configuration
+## Rodando localmente
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+\`\`\`bash
+npm install
+npm run dev
+\`\`\`
